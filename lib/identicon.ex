@@ -2,6 +2,7 @@ defmodule Identicon do
   @moduledoc """
   Documentation for `Identicon`.
   """
+  defstruct val: 0, next: nil
 
   def main(input) do
     input
@@ -63,5 +64,24 @@ defmodule Identicon do
 
   def save_image(image, input) do
     File.write("#{input}.png", image)
+  end
+
+  def fib(0), do: 0
+  def fib(1), do: 1
+  def fib(n), do: fib(n - 1) + fib(n - 2)
+
+  def reverse_list(nil), do: nil
+
+  def reverse_list(%Identicon{val: v, next: n}),
+    do: reverse_list(n, %Identicon{val: v, next: nil})
+
+  def reverse_list(%Identicon{val: v, next: n}, acc),
+    do: reverse_list(n, %Identicon{val: v, next: acc})
+
+  def reverse_list(nil, acc),
+    do: acc
+
+  def lee(%Identicon{val: _v, next: _n}, qwe \\ nil) do
+    IO.puts(qwe)
   end
 end
